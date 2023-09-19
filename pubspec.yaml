@@ -45,6 +45,8 @@ dependencies:
   url_launcher: ^6.1.10
   animated_text_kit: ^4.2.2
   avatar_glow: ^2.0.2
+  syncfusion_flutter_gauges: 
+  flutter_displaymode: ^0.6.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

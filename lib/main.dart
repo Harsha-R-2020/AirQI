@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_displaymode/flutter_displaymode.dart';
 
 
 import './screens/spashScreen.dart';
@@ -8,6 +9,7 @@ import './const/colors.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await FlutterDisplayMode.setHighRefreshRate();
   runApp(MyApp());
 }
 
