@@ -4,6 +4,8 @@
         android:label="air_quality_app"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+       <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyC7gAetoLk0R0JYY5j9an7RhQhOxbxZTys"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

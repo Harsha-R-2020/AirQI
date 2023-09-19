@@ -56,6 +56,8 @@ import 'dart:async';
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 
+import 'homeScreen.dart';
+
 
 class MyCustomWidget extends StatefulWidget {
   @override
@@ -139,7 +141,7 @@ class _SecondClassState extends State<SecondClass>
           HapticFeedback.mediumImpact();
           Navigator.of(context).pushReplacement(
             ThisIsFadeRoute(
-              route: ThirdPage(),
+              route: MyCustomUI(),
             ),
           );
           Timer(
