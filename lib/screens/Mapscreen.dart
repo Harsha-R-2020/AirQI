@@ -50,7 +50,7 @@ class _MapScreenState extends State<MapScreen> {
     double _w = MediaQuery.of(context).size.width;
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(
-          statusBarColor: AppColor.orange, // <-- SEE HERE
+          statusBarColor: Colors.white, // <-- SEE HERE
           statusBarIconBrightness: Brightness.dark, //<-- For Android SEE HERE (dark icons)
           statusBarBrightness: Brightness.light, //<-- For iOS SEE HERE (dark icons)
         )
@@ -58,7 +58,7 @@ class _MapScreenState extends State<MapScreen> {
     return Scaffold(
       appBar: AppBar(
         brightness: Brightness.light,
-        backgroundColor: AppColor.orange,
+        backgroundColor: Colors.white,
         elevation: 0,
         // on below line we have given title of app
         title: Text("Mark your Location",style: TextStyle(

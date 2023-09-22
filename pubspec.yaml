@@ -48,6 +48,9 @@ dependencies:
   syncfusion_flutter_gauges: 
   flutter_displaymode: ^0.6.0
   kdgaugeview: ^1.0.5
+  starflut: ^1.0.0
+  path_provider: ^2.1.1
+  http: ^0.13.6
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -66,6 +69,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/virtual/
+    - assets/script.py
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

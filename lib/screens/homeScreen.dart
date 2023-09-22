@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'Mapscreen.dart';
 import 'aqiMeterScreen.dart';
+import 'pythonScreen.dart';
 
 class MyCustomUI extends StatefulWidget {
   @override
@@ -101,9 +102,9 @@ class _MyCustomUIState extends State<MyCustomUI>
               homePageCard(
                 Colors.lightGreen,
                 Icons.speed_outlined,
-                'View Air Quality Prediction',
+                'View Air Quality Index',
                 context,
-                AQIMeter(title: 'Air Quality Index'),
+                PythonScreen(),
               ),
               // homePageCardsGroup(
               //     Colors.lightGreen,
