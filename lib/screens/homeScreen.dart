@@ -1,9 +1,13 @@
+import 'package:air_quality_app/screens/plotScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:ui';
 
+import '../main.dart';
+import 'DisplayCitiesBad.dart';
 import 'Mapscreen.dart';
 import 'aqiMeterScreen.dart';
+import 'goodPlotsScreen.dart';
 import 'pythonScreen.dart';
 
 class MyCustomUI extends StatefulWidget {
@@ -97,14 +101,28 @@ class _MyCustomUIState extends State<MyCustomUI>
                 Icons.analytics_outlined,
                 'Check Air Quality',
                 context,
-                MapScreen(),
+                CityListWidget(),
               ),
               homePageCard(
-                Colors.lightGreen,
+                Colors.lightBlue,
                 Icons.speed_outlined,
                 'View Air Quality Index',
                 context,
                 PythonScreen(),
+              ),
+              homePageCard(
+                Colors.redAccent,
+                Icons.auto_graph_outlined,
+                'View Top Polluted Cities',
+                context,
+                MyPlot(),
+              ),
+              homePageCard(
+                Colors.lightGreen,
+                Icons.auto_graph_outlined,
+                'View Top Cleansed Cities',
+                context,
+                GoodPlot(),
               ),
               // homePageCardsGroup(
               //     Colors.lightGreen,

@@ -72,7 +72,7 @@ class _PythonScreenState extends State<PythonScreen> {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return AQIMeter(speed: double.parse(output));
+                          return AQIMeter(speed: double.parse(output),option: dropdownValue);
                         },
                       ),
                     );
