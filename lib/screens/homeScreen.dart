@@ -1,6 +1,7 @@
 import 'package:air_quality_app/screens/plotScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:particles_flutter/particles_flutter.dart';
 import 'dart:ui';
 
 import '../main.dart';
@@ -60,12 +61,29 @@ class _MyCustomUIState extends State<MyCustomUI>
           statusBarBrightness: Brightness.light, //<-- For iOS SEE HERE (dark icons)
         )
     );
-
+    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
         children: [
           /// ListView
+      Stack(
+      children: [
+      CircularParticle(
+      width: w,
+        height: h,
+        particleColor: Colors.blueAccent.withOpacity(.2),
+        numberOfParticles: 150,
+        speedOfParticles: 1.5,
+        maxParticleSize: 7,
+        awayRadius: 0,
+        onTapAnimation: false,
+        isRandSize: true,
+        isRandomColor: false,
+        connectDots: false,
+        enableHover: false,
+      ),
           ListView(
             physics:
             BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
@@ -193,7 +211,7 @@ class _MyCustomUIState extends State<MyCustomUI>
                     child: BackdropFilter(
                       filter: ImageFilter.blur(sigmaY: 5, sigmaX: 5),
                       child: Container(
-                        height: _w / 8.5,
+                        height: _w / 6.5,
                         width: _w / 8.5,
                         decoration: BoxDecoration(
                           color: Colors.black.withOpacity(.05),
@@ -201,7 +219,7 @@ class _MyCustomUIState extends State<MyCustomUI>
                         ),
                         child: Center(
                           child: Icon(
-                            Icons.settings,
+                            Icons.info,
                             size: _w / 17,
                             color: Colors.black.withOpacity(.6),
                           ),
@@ -218,6 +236,8 @@ class _MyCustomUIState extends State<MyCustomUI>
           blurTheStatusBar(context),
         ],
       ),
+    ]
+      )
     );
   }
 
@@ -337,30 +357,67 @@ class _MyCustomUIState extends State<MyCustomUI>
 }
 
 class RouteWhereYouGo extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        brightness: Brightness.light,
-        backgroundColor: Colors.white,
-        elevation: 50,
-        centerTitle: true,
-        shadowColor: Colors.black.withOpacity(.5),
-        title: Text(
-          'EXAMPLE  PAGE',
-          style: TextStyle(
-              color: Colors.black.withOpacity(.7),
-              fontWeight: FontWeight.w600,
-              letterSpacing: 1),
-        ),
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.black.withOpacity(.8),
-          ),
-          onPressed: () => Navigator.maybePop(context),
-        ),
+    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
+    double _w = MediaQuery.of(context).size.width;
+    return  Scaffold(
+      backgroundColor: Colors.white,
+      body: Stack(
+        children: [
+      /// ListView
+      Stack(
+      children: [
+      CircularParticle(
+      width: w,
+        height: h,
+        particleColor: Colors.blueAccent.withOpacity(.2),
+        numberOfParticles: 150,
+        speedOfParticles: 1.5,
+        maxParticleSize: 7,
+        awayRadius: 0,
+        onTapAnimation: false,
+        isRandSize: true,
+        isRandomColor: false,
+        connectDots: false,
+        enableHover: false,
       ),
+      ListView(
+          physics:
+          BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+          children: [
+      Padding(
+      padding: EdgeInsets.fromLTRB(_w / 17, _w / 20, 0, _w / 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'About ',
+            style: TextStyle(
+              fontSize: 37,
+              color: Colors.black.withOpacity(.6),
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          SizedBox(height: _w / 35),
+          Text(
+            'Air Quality prediction app.',
+            style: TextStyle(
+              fontSize: 19,
+              color: Colors.black.withOpacity(.5),
+              fontWeight: FontWeight.w500,
+            ),
+            textAlign: TextAlign.start,
+          ),
+        ],
+      ),
+    ),
+
+    ])
+    ])
+    ])
     );
   }
 }

@@ -7,6 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import '../const/colors.dart';
 import 'aqiMeterScreen.dart';
 import 'functions.dart';
+import 'package:particles_flutter/particles_flutter.dart';
 
 class PythonScreen extends StatefulWidget {
   const PythonScreen({Key key}) : super(key: key);
@@ -22,6 +23,8 @@ class _PythonScreenState extends State<PythonScreen> {
   String dropdownValue = 'Select City';
   @override
   Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.white,
@@ -95,7 +98,8 @@ class _PythonScreenState extends State<PythonScreen> {
             Text(
               output,
               style: TextStyle(fontSize: 40, color: Colors.green),
-            )
+            ),
+
           ]),
         ),
       ),

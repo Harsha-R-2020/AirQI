@@ -3,6 +3,7 @@
 // import 'package:flutter/material.dart';
 //
 import 'package:flutter/services.dart';
+import 'package:particles_flutter/particles_flutter.dart';
 
 
 import '../utils/helper.dart';
@@ -65,51 +66,72 @@ class MyCustomWidget extends StatefulWidget {
 }
 
 class _MyCustomWidgetState extends State<MyCustomWidget> {
+
   @override
   Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: AppColor.orange,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              'AirQI',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 45,
-                fontFamily: "OpenSans",
-                fontWeight: FontWeight.bold,
+      body: Stack(
+        children: [
+        CircularParticle(
+        width: w,
+        height: h,
+        particleColor: Colors.white.withOpacity(.6),
+        numberOfParticles: 150,
+        speedOfParticles: 1.5,
+        maxParticleSize: 7,
+        awayRadius: 0,
+        onTapAnimation: false,
+        isRandSize: true,
+        isRandomColor: false,
+        connectDots: false,
+        enableHover: false,
+      ),
+          Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                'AirQI',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 45,
+                  fontFamily: "OpenSans",
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            OpenContainer(
-              closedBuilder: (_, openContainer) {
-                return Container(
-                  height: 200,
-                  width: 200,
-                  child: Center(
+              OpenContainer(
+                closedBuilder: (_, openContainer) {
+                  return Container(
+                    height: 200,
+                    width: 200,
+                    child: Center(
 
-                    child: Image.asset(
-                      Helper.getAssetName("applogo.png", "virtual"),
-                      fit: BoxFit.contain,
-                      height: 200,
-                      width: 200,
+                      child: Image.asset(
+                        Helper.getAssetName("applogo.png", "virtual"),
+                        fit: BoxFit.contain,
+                        height: 200,
+                        width: 200,
+                      ),
                     ),
-                  ),
-                );
-              },
-              openColor: Colors.white,
-              closedElevation: 20,
-              closedShape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-              transitionDuration: Duration(milliseconds: 700),
-              openBuilder: (_, closeContainer) {
-                return SecondClass();
-              },
-            ),
-          ],
+                  );
+                },
+                openColor: Colors.white,
+                closedElevation: 20,
+                closedShape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+                transitionDuration: Duration(milliseconds: 700),
+                openBuilder: (_, closeContainer) {
+                  return SecondClass();
+                },
+              ),
+            ],
+          ),
         ),
+      ]
       ),
     );
   }
