@@ -8,6 +8,7 @@ import '../main.dart';
 import 'DisplayCitiesBad.dart';
 import 'Mapscreen.dart';
 import 'aqiMeterScreen.dart';
+import 'forecastedPlotsScreen.dart';
 import 'goodPlotsScreen.dart';
 import 'pythonScreen.dart';
 
@@ -75,7 +76,7 @@ class _MyCustomUIState extends State<MyCustomUI>
         height: h,
         particleColor: Colors.blueAccent.withOpacity(.2),
         numberOfParticles: 150,
-        speedOfParticles: 1.5,
+        speedOfParticles: 0.5,
         maxParticleSize: 7,
         awayRadius: 0,
         onTapAnimation: false,
@@ -117,9 +118,9 @@ class _MyCustomUIState extends State<MyCustomUI>
               homePageCard(
                 Color(0xfff37736),
                 Icons.analytics_outlined,
-                'Check Air Quality',
+                'PM2.5 Forecasting',
                 context,
-                CityListWidget(),
+                ForecastedPlot(),
               ),
               homePageCard(
                 Colors.lightBlue,
@@ -375,10 +376,10 @@ class RouteWhereYouGo extends StatelessWidget {
         height: h,
         particleColor: Colors.blueAccent.withOpacity(.2),
         numberOfParticles: 150,
-        speedOfParticles: 1.5,
+        speedOfParticles: 0.5,
         maxParticleSize: 7,
         awayRadius: 0,
-        onTapAnimation: false,
+        onTapAnimation: true,
         isRandSize: true,
         isRandomColor: false,
         connectDots: false,
@@ -388,32 +389,203 @@ class RouteWhereYouGo extends StatelessWidget {
           physics:
           BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
           children: [
-      Padding(
-      padding: EdgeInsets.fromLTRB(_w / 17, _w / 20, 0, _w / 10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'About ',
-            style: TextStyle(
-              fontSize: 37,
-              color: Colors.black.withOpacity(.6),
-              fontWeight: FontWeight.w700,
-            ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(_w / 17, _w / 20, 0, _w / 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+              Text(
+                'About ',
+                style: TextStyle(
+                  fontSize: 37,
+                  color: Colors.black.withOpacity(.6),
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              SizedBox(height: _w / 35),
+              Text(
+                'Air Quality prediction app.',
+                style: TextStyle(
+                  fontSize: 19,
+                  color: Colors.black.withOpacity(.5),
+                  fontWeight: FontWeight.w500,
+                ),
+                textAlign: TextAlign.start,
+              ),
+            ],
           ),
-          SizedBox(height: _w / 35),
-          Text(
-            'Air Quality prediction app.',
-            style: TextStyle(
-              fontSize: 19,
-              color: Colors.black.withOpacity(.5),
-              fontWeight: FontWeight.w500,
-            ),
-            textAlign: TextAlign.start,
           ),
-        ],
-      ),
-    ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Your Air Quality Companion ',
+                style: TextStyle(
+                  fontSize: 23,
+                  color: Colors.black.withOpacity(.6),
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+            SizedBox(height: _w / 35),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "AirQI is your go-to app for staying informed about the air you breathe."
+                    " We believe that everyone deserves to know the quality of the air around them, "
+                    "and we're here to provide you with real-time data on air quality, empowering you "
+                    "to make healthier choices for yourself and your community.",
+                style: TextStyle(
+                  fontSize: 19,
+                  color: Colors.black.withOpacity(.5),
+                  fontWeight: FontWeight.w500,
+
+                ),
+                textAlign: TextAlign.justify,
+              ),
+            ),
+            SizedBox(height: _w / 35),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Live AQI Data ',
+                style: TextStyle(
+                  fontSize: 23,
+                  color: Colors.black.withOpacity(.6),
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+            SizedBox(height: _w / 35),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "With AirQI, you can access up-to-the-minute Air Quality Index (AQI) data for your location. "
+                    "We pull data from reliable sources to ensure you always have the latest information on "
+                    "air quality conditions in your area.",
+                style: TextStyle(
+                  fontSize: 19,
+                  color: Colors.black.withOpacity(.5),
+                  fontWeight: FontWeight.w500,
+
+                ),
+                textAlign: TextAlign.justify,
+              ),
+            ),
+            SizedBox(height: _w / 35),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Top Polluted Cities',
+                style: TextStyle(
+                  fontSize: 23,
+                  color: Colors.black.withOpacity(.6),
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+            SizedBox(height: _w / 35),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "Stay informed about the most polluted cities around the world. AirQI ranks cities based on their AQI, "
+                    "helping you plan your travels or simply satisfy your curiosity about air quality in different places.",
+                style: TextStyle(
+                  fontSize: 19,
+                  color: Colors.black.withOpacity(.5),
+                  fontWeight: FontWeight.w500,
+
+                ),
+                textAlign: TextAlign.justify,
+              ),
+            ),
+            SizedBox(height: _w / 35),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Top Clean Cities',
+                style: TextStyle(
+                  fontSize: 23,
+                  color: Colors.black.withOpacity(.6),
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+            SizedBox(height: _w / 35),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "On the flip side, we also celebrate cities with the cleanest air. "
+                    "Discover which cities boast the freshest, healthiest air, "
+                    "and perhaps find your next vacation destination or relocation spot.",
+                style: TextStyle(
+                  fontSize: 19,
+                  color: Colors.black.withOpacity(.5),
+                  fontWeight: FontWeight.w500,
+
+                ),
+                textAlign: TextAlign.justify,
+              ),
+            ),
+            SizedBox(height: _w / 35),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'User-Friendly Interface',
+                style: TextStyle(
+                  fontSize: 23,
+                  color: Colors.black.withOpacity(.6),
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+            SizedBox(height: _w / 35),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                " AirQI is designed with you in mind. "
+                    "Our user-friendly interface makes it easy to access and understand air quality data,"
+                    " even for those new to the topic",
+                style: TextStyle(
+                  fontSize: 19,
+                  color: Colors.black.withOpacity(.5),
+                  fontWeight: FontWeight.w500,
+
+                ),
+                textAlign: TextAlign.justify,
+              ),
+            ),
+            SizedBox(height: _w / 35),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Why AirQI?',
+                style: TextStyle(
+                  fontSize: 23,
+                  color: Colors.black.withOpacity(.6),
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+            SizedBox(height: _w / 35),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "At AirQI, we are committed to making air quality information accessible and actionable for everyone. We understand that clean air is essential for a healthy life, and we believe that knowledge is the first step toward positive change."
+
+   "Whether you're planning outdoor activities, considering a move to a new city, or just want to stay informed about the air you breathe daily, AirQI is your trusted companion. Join us in the quest for better air quality, one informed choice at a time."
+
+    "Download AirQI today and take control of the air you breathe. Your health and well-being deserve nothing less.",
+                style: TextStyle(
+                  fontSize: 19,
+                  color: Colors.black.withOpacity(.5),
+                  fontWeight: FontWeight.w500,
+
+                ),
+                textAlign: TextAlign.justify,
+              ),
+            ),
+            SizedBox(height: _w / 35),
+
 
     ])
     ])

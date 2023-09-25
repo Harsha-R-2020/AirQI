@@ -8,7 +8,13 @@ import numpy as np
 from flask import  request, jsonify,send_file
 import plotly.graph_objects as go
 from concurrent.futures import ThreadPoolExecutor
+import matplotlib.pyplot as plt
 import plotly.io as pio
+import seaborn as sns              # statistical data visualization
+sns.set_theme()
+import joblib
+import xgboost  
+
 
 app = flask.Flask(__name__)
 api = Api(app)
@@ -48,6 +54,41 @@ def returnascii():
     else:
         d['message']= "0"
     return d
+
+
+@app.route('/futureprediction', methods = ['GET'])
+def futurepredictionplot():
+    X_test=pd.read_csv('x_test.csv')
+    future_df=pd.read_csv('future_data.csv')
+    X_test['datetime'] =  pd.to_datetime(X_test['datetime'])
+    X_test = X_test.set_index('datetime')
+    future_df['datetime'] =  pd.to_datetime(future_df['datetime'])
+    future_df = future_df.set_index('datetime')
+    test_predictions = X_test.copy()
+    future_predictions = future_df.copy()
+    loaded_model = joblib.load("AQI_model.pkl")
+    test_predictions['predict_XGBoost'] = loaded_model.predict(X_test)
+    future_predictions['predict_XGBoost'] = loaded_model.predict(future_df)
+    y_test = pd.read_csv('y_test.csv')
+    y_test['datetime'] =  pd.to_datetime(y_test['datetime'])
+    y_test = y_test.set_index('datetime')
+    fig, ax = plt.subplots(figsize=(12, 6))
+    # Plot the data using the Axes object
+    sns.lineplot(data=y_test, label="Actual Data", ax=ax)
+    sns.lineplot(data=test_predictions['predict_XGBoost'], label="Testing Prediction", ax=ax)
+    sns.lineplot(data=future_predictions['predict_XGBoost'], label="Future Prediction", ax=ax)
+    # Customize the plot further if needed
+    ax.set_xlabel("XGBoost - Predictions", fontsize=14)  # Replace with your actual X-axis label
+    ax.set_ylabel("PM2.5(ug)\m3", fontsize=14)  # Replace with your actual Y-axis label
+    ax.set_title("Delhi PM2.5 Forecasting", fontsize=16)  # Replace with your actual plot title
+    ax.legend(fontsize=12)
+    # Show the plot
+    plt.tight_layout()
+    plt.savefig('prediction.jpg', dpi=300, bbox_inches='tight') 
+    return send_file('prediction.jpg', mimetype='image/jpeg')
+
+
+
 
 @app.route('/specificcleanplot', methods = ['GET'])
 def returnspecificcleanplot():
