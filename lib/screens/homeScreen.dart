@@ -8,7 +8,7 @@ import '../main.dart';
 import 'DisplayCitiesBad.dart';
 import 'Mapscreen.dart';
 import 'aqiMeterScreen.dart';
-import 'chatbot.dart';
+import 'chatbotScreen.dart';
 import 'forecastedPlotsScreen.dart';
 import 'goodPlotsScreen.dart';
 import 'pythonScreen.dart';
