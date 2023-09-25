@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.18.5 <3.0.0"
 
 dependencies:
   flutter:
@@ -29,7 +29,10 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  firebase_core: ^2.7.0
+  bubble:
+  intl:
+  dialogflow_grpc: ^0.2.9
+#  firebase_core: ^2.7.0
   firebase_auth: ^4.2.9
   fluttertoast: ^8.2.1
   animations: ^2.0.7
@@ -39,7 +42,7 @@ dependencies:
   geolocator: ^9.0.2
   location: ^4.3.0
   geocoding: ^2.0.5
-  flutter_geocoder: ^0.2.2-nullsafety
+  #flutter_geocoder: ^0.2.2-nullsafety
   google_maps_flutter_web: ^0.4.0+7
   cloud_firestore: ^4.4.4
   url_launcher: ^6.1.10
@@ -48,12 +51,13 @@ dependencies:
   syncfusion_flutter_gauges: 
   flutter_displaymode: ^0.6.0
   kdgaugeview: ^1.0.5
-  starflut: ^1.0.0
+  #starflut: ^1.0.0
   path_provider: ^2.1.1
   http: ^0.13.6
   photo_view: ^0.14.0
   animator: ^3.3.0
   particles_flutter: ^0.1.4
+  speech_to_text: ^6.1.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -73,6 +77,7 @@ flutter:
   assets:
     - assets/images/virtual/
     - assets/script.py
+    - assets/credits.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

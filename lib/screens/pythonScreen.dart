@@ -10,7 +10,7 @@ import 'functions.dart';
 import 'package:particles_flutter/particles_flutter.dart';
 
 class PythonScreen extends StatefulWidget {
-  const PythonScreen({Key key}) : super(key: key);
+  // const PythonScreen({required Key key}) : super(key: key);
 
   @override
   _PythonScreenState createState() => _PythonScreenState();
@@ -55,15 +55,15 @@ class _PythonScreenState extends State<PythonScreen> {
                 );
               }).toList(),
               // Step 5.
-              onChanged: (String newValue) {
+              onChanged: (String? newValue) {
                 setState(() {
-                  dropdownValue = newValue;
+                  dropdownValue = newValue ?? 'Select City';
                 });
               },
             ),
             TextButton(
                 onPressed: () async {
-                  url = 'http://192.168.1.6:8080/api?query='+ dropdownValue;
+                  url = 'http://192.168.1.8:8080/api?query='+ dropdownValue;
                   data = await fetchdata(url);
                   var decoded = jsonDecode(data);
                   setState(() {

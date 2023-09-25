@@ -10,7 +10,7 @@ import '../const/colors.dart';
 
 
 class MapScreen extends StatefulWidget {
-  const MapScreen({Key key}) : super(key: key);
+  const MapScreen({required Key key}) : super(key: key);
 
   @override
   _MapScreenState createState() => _MapScreenState();

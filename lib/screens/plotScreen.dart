@@ -79,8 +79,9 @@ class ImageFromAPI extends StatefulWidget {
 }
 
 class _ImageFromAPIState extends State<ImageFromAPI> {
-  String imageUrl = 'http://192.168.1.6:8080/plot?query=a'; // Replace with your Flask API URL
-
+  String imageUrl = 'http://192.168.1.8:8080/plot?query=a'; // Replace with your Flask API URL
+  late Uint8List? imageBytes;
+  bool loading = true;
   Future<void> fetchImage() async {
     final response = await http.get(Uri.parse(imageUrl));
     if (response.statusCode == 200) {
@@ -90,6 +91,7 @@ class _ImageFromAPIState extends State<ImageFromAPI> {
         // This assumes you are receiving a JPEG image
         // Modify this part if your image format is different
         imageBytes = response.bodyBytes;
+        loading = false;
       });
     } else {
       // Handle error, e.g., display a placeholder image
@@ -97,7 +99,6 @@ class _ImageFromAPIState extends State<ImageFromAPI> {
     }
   }
 
-  Uint8List imageBytes;
 
   @override
   void initState() {
@@ -146,10 +147,10 @@ class _ImageFromAPIState extends State<ImageFromAPI> {
                         padding: EdgeInsets.all(20),
                           width: _w, // Set the desired width
                           height: _w,
-                        child: imageBytes != null
+                        child: loading != true
                             ? GestureDetector(
                                 child: PhotoView(
-                                  imageProvider: MemoryImage(imageBytes),
+                                  imageProvider: MemoryImage(imageBytes!),
                                   backgroundDecoration: BoxDecoration(
                                     color: Colors.white, // Change the background color
                                   ),

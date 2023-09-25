@@ -20,7 +20,7 @@ class _CityListWidgetState extends State<CityListWidget> {
 
   Future<void> fetchData() async {
     try {
-      final response = await http.get(Uri.parse('http://192.168.1.6:8080/getcities?query=a'));
+      final response = await http.get(Uri.parse('http://192.168.137.240:8080/getcities?query=a'));
 
       if (response.statusCode == 200) {
         final jsonResponse = json.decode(response.body);
@@ -116,7 +116,7 @@ class _CityListWidgetState extends State<CityListWidget> {
 class City {
   final String name;
 
-  City({ this.name});
+  City({ required this.name});
 }
 
 // void main() => runApp(MaterialApp(home: CityListWidget()));

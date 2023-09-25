@@ -14,7 +14,7 @@ import 'functions.dart';
 // void main() => runApp(MyApp());
 
 class specificCleanMyPlot extends StatelessWidget {
-  specificCleanMyPlot({Key key, this.option}) : super(key: key);
+  specificCleanMyPlot({required this.option});
   final String option;
   @override
   Widget build(BuildContext context) {
@@ -75,7 +75,7 @@ class specificCleanMyPlot extends StatelessWidget {
 //
 // }
 class ImageFromAPI extends StatefulWidget {
-  ImageFromAPI({Key key,this.option}) : super(key: key);
+  ImageFromAPI({required this.option});
   final String option;
   @override
   _ImageFromAPIState createState() => _ImageFromAPIState();
@@ -85,7 +85,8 @@ class _ImageFromAPIState extends State<ImageFromAPI> {
   // Replace with your Flask API URL
 
   Future<void> fetchImage() async {
-    String imageUrl = 'http://192.168.1.6:8080/specificcleanplot?query='+widget.option;
+    String imageUrl = 'http://192.168.1.8:8080/specificcleanplot?query='+widget.option;
+
     final response = await http.get(Uri.parse(imageUrl));
     if (response.statusCode == 200) {
       // Image retrieved successfully
@@ -94,14 +95,15 @@ class _ImageFromAPIState extends State<ImageFromAPI> {
         // This assumes you are receiving a JPEG image
         // Modify this part if your image format is different
         imageBytes = response.bodyBytes;
+        loading = false;
       });
     } else {
       // Handle error, e.g., display a placeholder image
       print('Failed to load image: ${response.statusCode}');
     }
   }
-
-  Uint8List imageBytes;
+  late Uint8List? imageBytes;
+  bool loading = true;
 
   @override
   void initState() {
@@ -150,10 +152,10 @@ class _ImageFromAPIState extends State<ImageFromAPI> {
                   padding: EdgeInsets.all(20),
                   width: _w, // Set the desired width
                   height: _w,
-                  child: imageBytes != null
+                  child: loading != true
                       ? GestureDetector(
                     child: PhotoView(
-                      imageProvider: MemoryImage(imageBytes),
+                      imageProvider: MemoryImage(imageBytes!),
                       backgroundDecoration: BoxDecoration(
                         color: Colors.white, // Change the background color
                       ),

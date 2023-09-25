@@ -8,6 +8,7 @@ import '../main.dart';
 import 'DisplayCitiesBad.dart';
 import 'Mapscreen.dart';
 import 'aqiMeterScreen.dart';
+import 'chatbot.dart';
 import 'forecastedPlotsScreen.dart';
 import 'goodPlotsScreen.dart';
 import 'pythonScreen.dart';
@@ -19,9 +20,9 @@ class MyCustomUI extends StatefulWidget {
 
 class _MyCustomUIState extends State<MyCustomUI>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<double> _animation;
-  Animation<double> _animation2;
+  late AnimationController _controller;
+  late Animation<double> _animation;
+  late Animation<double> _animation2;
 
   @override
   void initState() {
@@ -142,6 +143,13 @@ class _MyCustomUIState extends State<MyCustomUI>
                 'View Top Cleansed Cities',
                 context,
                 GoodPlot(),
+              ),
+              homePageCard(
+                Colors.lightGreen,
+                Icons.chat_outlined,
+                'Chatbot',
+                context,
+                chatbotScreen(),
               ),
               // homePageCardsGroup(
               //     Colors.lightGreen,

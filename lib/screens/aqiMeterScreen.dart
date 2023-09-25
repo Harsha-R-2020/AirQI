@@ -8,7 +8,7 @@ import 'package:kdgaugeview/kdgaugeview.dart';
 import '../const/colors.dart';
 
 class AQIMeter extends StatefulWidget {
-  AQIMeter({Key key, this.speed,this.option}) : super(key: key);
+  AQIMeter({required this.speed,required this.option});
 
   final double speed;
   final String option;

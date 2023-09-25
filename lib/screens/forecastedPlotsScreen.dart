@@ -34,8 +34,9 @@ class ForecastedPlotFromAPI extends StatefulWidget {
 }
 
 class _ForecastedPlotFromAPIState extends State<ForecastedPlotFromAPI> {
-  String imageUrl = 'http://192.168.137.240:8080/futureprediction'; // Replace with your Flask API URL
-
+  String imageUrl = 'http://192.168.1.8:8080/futureprediction'; // Replace with your Flask API URL
+  late Uint8List? imageBytes;
+  bool loading = true;
   Future<void> fetchImage() async {
     final response = await http.get(Uri.parse(imageUrl));
     if (response.statusCode == 200) {
@@ -45,6 +46,7 @@ class _ForecastedPlotFromAPIState extends State<ForecastedPlotFromAPI> {
         // This assumes you are receiving a JPEG image
         // Modify this part if your image format is different
         imageBytes = response.bodyBytes;
+        loading = false;
       });
     } else {
       // Handle error, e.g., display a placeholder image
@@ -52,7 +54,6 @@ class _ForecastedPlotFromAPIState extends State<ForecastedPlotFromAPI> {
     }
   }
 
-  Uint8List imageBytes;
 
   @override
   void initState() {
@@ -100,10 +101,10 @@ class _ForecastedPlotFromAPIState extends State<ForecastedPlotFromAPI> {
                     padding: EdgeInsets.all(20),
                     width: _w, // Set the desired width
                     height: _w,
-                    child: imageBytes != null
+                    child:loading != true
                         ? GestureDetector(
                       child: PhotoView(
-                        imageProvider: MemoryImage(imageBytes),
+                        imageProvider: MemoryImage(imageBytes!),
                         backgroundDecoration: BoxDecoration(
                           color: Colors.white, // Change the background color
                         ),

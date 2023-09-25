@@ -3,7 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  starflut
+  dialogflow_grpc
   url_launcher_linux
 )
 
