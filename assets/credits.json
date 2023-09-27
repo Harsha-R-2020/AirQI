@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "zephyr-monitor-ncsn",
+  "private_key_id": "1c6331783654571a60912d00f85eda7410733a6a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDQU9kMQVnMEA6C\ny+/ruZJSPSwVCs/YEovS6TQMsHuu0EvGNk8P+nBzyn9AE9m97vD2oBbjSmdbt0eI\n2t5sj6lEkZyGm4GHjd/kI1HfCv7Wqr4FGZHWFoWgq6dfwbtSsGSyZMDiXAzA0sFz\nEtp75RQwYNql+M7G4zw+DzI5o01roRUsvS6RgbS4Keyyo20Fg1dgpZcMvRNsZaF+\n4xwwMWgHPk5qhRjsBzU0RIJxY4RE563TWa/KH/8OPz1gClM/swikVWuAhnlXIrHv\n5GlGle6cz6htjBrWuBUZoB6JmGoqRu8woHDVOvrjxKPQlfnBd3wmdBsGfZftrGWA\n/Iq/+7g3AgMBAAECggEAA5SmgIb+c7HgGWcig9RFtNfeUj2yC/v7VdSNuAqv7qyN\nkNy7iAIPhiuu+1/3ZfrCGl1cnjRX5QQYJfOZqs4DmzY/NXvvnd2NHOFvGhgrSW9F\nkI0pPmRWtRD5qH1A87PjlzA32jVMP/Xoh9zOYWegteuWiMZVAcuMoxhuV0eO1z5H\nvL3J1VayPrbHLdTaVMr3GQvSNR2kCt2lXyEDNucTNdYgibWzV/GMs9Jtne7lWLtN\nsVf1Vm5tx5MEj0hrtSAsFevNqEdg1TANh9zwiiGKvJsG3/6GaheKmmFL+JL2XWLY\ni8rQgRHDvqj0xcruzvOVfG8vKSBQ91U7BIp5pjRHqQKBgQDvv5RCibEFK9x9xAFl\nFBJMD0dfvW7TqEJuBl97yZAD0jvZ2Vo/nneX4TgdRMM1UuOMrUz8Cgc4EwtRj6vn\niIem8i6N9FZFRRDWqxICuzBRiyOArhRylVL4mIG53aOR1E8FnRG69972sFucU6J0\n9zW4yaFZlN7qKgIcPmGC/rW0wwKBgQDecwOmQ15eIC7fvs1enMQWIG05E8vTqrCB\n1ORdPx4aVTy+0rIocLbZkCdOyZ22Xx5tsBzH2ymDvfOjmsVPWGTdVyPxGzqAoNoT\n6O59e4CO+jhmTnUQfuWedDhBHheQ3ME4rr9gJYEaaLDxLPSNB8ofC1/Rcb0cjjZ2\ncNskK9hnfQKBgGtam+bXhR7NryPZus4qGK9aQBmM162LMIPX8rWZYhVz9DzuaM0I\nBoFJ5jik68xa223IxCovy1++l1jkPpOkvSlyVIpYGLFX5dxaKexzKYW6CiG60Ykl\neEu87ontxyqrqN7YoHHaQEqyWbM8eAhsEfA2yTs1wEOWn+9Jt5xStcbFAoGAJl8+\nrOqIF8KDc3MtZ/mw1YRIcwUYLu4Nvoej0PX3UmGLtfsQYmt3DzaPoUakHvZvgEpV\n3J/QnHoi0gD7skE0PP4wJAInaFLW64JNyXWJaqB9JCC6jtrk7x1rKshvFj0OU6HJ\nP2OYzp5qj1/K250RX6ONpspw7cEWYf37v1SU4t0CgYAjASv1p/84GhJ+ev38gQlU\nFhctxW5/Y0wWhbOmO3u10ed9Im5fbjjKuYOhu0ioArG0J8TCHcbS2Xl8GcWE7+N3\nTKdCETXssqjTlGr1BxzYC2mLlDSlSSmafiqCeflRicRZroV3qx65JeLUPp6nKLIk\nLFosRiiTxQyBqSLvNqrtmA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "zephyr@zephyr-monitor-ncsn.iam.gserviceaccount.com",
+  "client_id": "104797054826275902073",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/zephyr%40zephyr-monitor-ncsn.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
