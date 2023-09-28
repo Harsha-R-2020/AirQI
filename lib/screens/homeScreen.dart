@@ -240,6 +240,50 @@ class _MyCustomUIState extends State<MyCustomUI>
               ],
             ),
           ),
+        Padding(
+          padding: EdgeInsets.fromLTRB(0, h/1.1, _w / 18, 0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              InkWell(
+                highlightColor: Colors.transparent,
+                splashColor: Colors.transparent,
+                onTap: () {
+                  HapticFeedback.lightImpact();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return chatbotScreen();
+                      },
+                    ),
+                  );
+                },
+                child: ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(99)),
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaY: 5, sigmaX: 5),
+                    child: Container(
+                      height: _w / 5.5,
+                      width: _w / 7.5,
+                      decoration: BoxDecoration(
+                        color: Colors.lightBlueAccent.withOpacity(.5),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: Icon(
+                          Icons.chat_outlined,
+                          size: _w / 12,
+                          color: Colors.black.withOpacity(.6),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
 
           // Blur the Status bar
           blurTheStatusBar(context),

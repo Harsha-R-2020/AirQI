@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:dialogflow_grpc/dialogflow_grpc.dart';
 import 'package:dialogflow_grpc/generated/google/cloud/dialogflow/v2beta1/session.pb.dart';
+import 'package:particles_flutter/particles_flutter.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
-
+import 'package:permission_handler/permission_handler.dart';
 import 'chat_bubbl.dart';
-
+import 'dart:math' as math;
 class chatbotScreen extends StatefulWidget {
   // const HomeScreen({Key key}) : super(key: key);
 
@@ -33,7 +34,21 @@ class _chatbotScreenState extends State<chatbotScreen> {
   @override
   void initState() {
     super.initState();
+    // requestAudioPermission();
     initPlugin();
+  }
+
+  Future<void> requestAudioPermission() async {
+    final status = await Permission.microphone.request();
+
+    if (status.isGranted) {
+      // Permission granted, you can now use the microphone
+    } else if (status.isDenied) {
+      // Permission denied
+    } else if (status.isPermanentlyDenied) {
+      // Permission permanently denied, take the user to settings
+      openAppSettings();
+    }
   }
 
   Future<void> initPlugin() async {
@@ -53,8 +68,14 @@ class _chatbotScreenState extends State<chatbotScreen> {
 
     // Initialize speech recognition services, returns true if successful, false if failed.
     await speechToText.initialize(
-      options: [SpeechToText.androidIntentLookup],
+        onStatus: (status) {
+      if (status == 'initialized') {
+        // SpeechToText is initialized, you can now use it.
+        setState(() {});
+      }
+    }
     );
+
   }
 
   void stopStream() async {
@@ -82,7 +103,7 @@ class _chatbotScreenState extends State<chatbotScreen> {
     if (fulfillmentText.isNotEmpty) {
       ChatMessage botMessage = ChatMessage(
         text: fulfillmentText,
-        name: "Bot",
+        name: "Zephyr",
         type: false,
       );
 
@@ -109,21 +130,29 @@ class _chatbotScreenState extends State<chatbotScreen> {
   }
 
   void handleStream() async {
-    setState(() {
-      _isRecording = true;
-    });
-    await speechToText.listen(
-      onResult: _onSpeechResult,
-    );
+    if (speechToText.isListening) {
+      // If already listening, stop listening
+      _stopListening();
+    } else {
+      setState(() {
+        _isRecording = true;
+      });
+
+      await speechToText.listen(
+        onResult: _onSpeechResult,
+      );
+    }
   }
 
   void _stopListening() async {
     await speechToText.stop();
+    setState(() {
+      _isRecording = false;
+    });
   }
 
   @override
   void dispose() {
-    _recorderStatus.cancel();
     _audioStreamSubscription.cancel();
     speechToText.stop();
     super.dispose();
@@ -134,57 +163,105 @@ class _chatbotScreenState extends State<chatbotScreen> {
   //------------------------------------------------------------------------------------
   @override
   Widget build(BuildContext context) {
+    double _w = MediaQuery.of(context).size.width;
+    double h = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blue.shade400,
-        title: const Text(
-          "Zephyr Monitor",
-          style: TextStyle(
-            color: Colors.white,
-          ),
-        ),
-      ),
-      body: Column(
+      // appBar: AppBar(
+      //   backgroundColor: Colors.blue.shade400,
+      //   title: const Text(
+      //     "Zephyr Monitor",
+      //     style: TextStyle(
+      //       color: Colors.white,
+      //     ),
+      //   ),
+      // ),
+      body: Stack(
         children: [
-          Flexible(
-            child: ListView.builder(
-              padding: const EdgeInsets.all(8.0),
-              reverse: true,
-              itemBuilder: (ctx, int index) => _messages[index],
-              itemCount: _messages.length,
-            ),
+          CircularParticle(
+            width: _w,
+            height: h,
+            particleColor: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(0.2),
+            numberOfParticles: 150,
+            speedOfParticles: 0.5,
+            maxParticleSize: 7,
+            awayRadius: 0,
+            onTapAnimation: false,
+            isRandSize: true,
+            isRandomColor: false,
+            connectDots: false,
+            enableHover: false,
           ),
           Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: Theme.of(context).cardColor,
-              border: Border.all(color: Colors.blue),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-            child: Row(
-              children: <Widget>[
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(_w /55, _w / 7, _w/3, _w / 13),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Zephyr',
+                        style: TextStyle(
+                          fontSize: 37,
+                          color: Colors.black.withOpacity(.6),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      SizedBox(height: _w / 35),
+                      Text(
+                        'Zephyr Monitor Chat-bot.',
+                        style: TextStyle(
+                          fontSize: 19,
+                          color: Colors.black.withOpacity(.5),
+                          fontWeight: FontWeight.w500,
+                        ),
+                        textAlign: TextAlign.start,
+                      ),
+                    ],
+                  ),
+                ),
                 Flexible(
-                  child: TextField(
-                    controller: _textController,
-                    onSubmitted: handleSubmitted,
-                    decoration: const InputDecoration.collapsed(
-                        hintText: "Send a message"),
+                  child: ListView.builder(
+                    padding: const EdgeInsets.all(8.0),
+                    reverse: true,
+                    itemBuilder: (ctx, int index) => _messages[index],
+                    itemCount: _messages.length,
                   ),
                 ),
                 Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 4.0),
-                  child: IconButton(
-                    icon: const Icon(Icons.send),
-                    onPressed: () => handleSubmitted(_textController.text),
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).cardColor,
+                    border: Border.all(color: Colors.blue),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                  child: Row(
+                    children: <Widget>[
+                      Flexible(
+                        child: TextField(
+                          controller: _textController,
+                          onSubmitted: handleSubmitted,
+                          decoration: const InputDecoration.collapsed(
+                              hintText: "Send a message"),
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 4.0),
+                        child: IconButton(
+                          icon: const Icon(Icons.send),
+                          onPressed: () => handleSubmitted(_textController.text),
+                        ),
+                      ),
+                      // IconButton(
+                      //     iconSize: 30.0,
+                      //     icon: Icon(_isRecording ? Icons.mic : Icons.mic_off),
+                      //     onPressed: () {
+                      //       handleStream();
+                      //     }),
+                    ],
                   ),
                 ),
-                IconButton(
-                    iconSize: 30.0,
-                    icon: Icon(_isRecording ? Icons.mic : Icons.mic_off),
-                    onPressed: () {
-                      handleStream();
-                    }),
               ],
             ),
           ),

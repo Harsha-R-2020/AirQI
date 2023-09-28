@@ -2,6 +2,7 @@ import 'package:animator/animator.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:particles_flutter/particles_flutter.dart';
 import 'dart:typed_data';
 
 import 'package:photo_view/photo_view.dart';
@@ -34,7 +35,7 @@ class ForecastedPlotFromAPI extends StatefulWidget {
 }
 
 class _ForecastedPlotFromAPIState extends State<ForecastedPlotFromAPI> {
-  String imageUrl = 'http://192.168.1.8:8080/futureprediction'; // Replace with your Flask API URL
+  String imageUrl = 'http://192.168.1.11:8080/futureprediction'; // Replace with your Flask API URL
   late Uint8List? imageBytes;
   bool loading = true;
   Future<void> fetchImage() async {
@@ -64,8 +65,23 @@ class _ForecastedPlotFromAPIState extends State<ForecastedPlotFromAPI> {
   @override
   Widget build(BuildContext context) {
     double _w = MediaQuery.of(context).size.width;
+    double h = MediaQuery.of(context).size.height;
     return Stack(
         children: [
+          CircularParticle(
+            width: _w,
+            height: h,
+            particleColor: Colors.lightGreen.withOpacity(0.2),
+            numberOfParticles: 150,
+            speedOfParticles: 0.5,
+            maxParticleSize: 7,
+            awayRadius: 0,
+            onTapAnimation: false,
+            isRandSize: true,
+            isRandomColor: false,
+            connectDots: false,
+            enableHover: false,
+          ),
           ListView(
               physics:
               BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),

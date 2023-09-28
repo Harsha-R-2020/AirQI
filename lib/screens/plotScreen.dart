@@ -1,8 +1,9 @@
 import 'dart:convert';
-
+import 'dart:math' as math;
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:particles_flutter/particles_flutter.dart';
 import 'dart:typed_data';
 import 'package:photo_view/photo_view.dart';
 import 'package:animator/animator.dart';
@@ -79,7 +80,7 @@ class ImageFromAPI extends StatefulWidget {
 }
 
 class _ImageFromAPIState extends State<ImageFromAPI> {
-  String imageUrl = 'http://192.168.1.8:8080/plot?query=a'; // Replace with your Flask API URL
+  String imageUrl = 'http://192.168.1.11:8080/plot?query=a'; // Replace with your Flask API URL
   late Uint8List? imageBytes;
   bool loading = true;
   Future<void> fetchImage() async {
@@ -109,8 +110,24 @@ class _ImageFromAPIState extends State<ImageFromAPI> {
   @override
   Widget build(BuildContext context) {
     double _w = MediaQuery.of(context).size.width;
+    double w = MediaQuery.of(context).size.width;
+    double h = MediaQuery.of(context).size.height;
     return Stack(
         children: [
+          CircularParticle(
+            width: w,
+            height: h,
+            particleColor: Colors.redAccent.withOpacity(.2),
+            numberOfParticles: 150,
+            speedOfParticles: 0.5,
+            maxParticleSize: 7,
+            awayRadius: 0,
+            onTapAnimation: false,
+            isRandSize: true,
+            isRandomColor: false,
+            connectDots: false,
+            enableHover: false,
+          ),
           ListView(
               physics:
               BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
@@ -162,7 +179,20 @@ class _ImageFromAPIState extends State<ImageFromAPI> {
                             : MyCustomLoadingWidget(),
                       ),
                     // Display a loading indicator
-                  )
+                  ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "Note : The AQI data is retrieved in real-time, so please be patient as it may take a moment to load.",
+                        style: TextStyle(
+                          fontSize: 19,
+                          color: Colors.black.withOpacity(.5),
+                          fontWeight: FontWeight.w500,
+
+                        ),
+                        textAlign: TextAlign.justify,
+                      ),
+                    ),
             ]
           )
           ],
