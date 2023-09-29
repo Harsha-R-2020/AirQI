@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
+import 'functions.dart';
+
 class CityListWidget extends StatefulWidget {
   @override
   _CityListWidgetState createState() => _CityListWidgetState();
@@ -20,7 +22,7 @@ class _CityListWidgetState extends State<CityListWidget> {
 
   Future<void> fetchData() async {
     try {
-      final response = await http.get(Uri.parse('http://192.168.137.240:8080/getcities?query=a'));
+      final response = await http.get(Uri.parse(flask_url+'/getcities?query=a'));
 
       if (response.statusCode == 200) {
         final jsonResponse = json.decode(response.body);

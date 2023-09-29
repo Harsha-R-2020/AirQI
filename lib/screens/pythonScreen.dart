@@ -117,7 +117,7 @@ class _PythonScreenState extends State<PythonScreen> {
                           child: GestureDetector(
                             onTap: () async{
                               // Add your onTap functionality here
-                              url = 'http://192.168.1.11:8080/api?query='+ dropdownValue;
+                              url = flask_url+'/api?query='+ dropdownValue;
                               data = await fetchdata(url);
                               var decoded = jsonDecode(data);
                               setState(() {

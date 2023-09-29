@@ -80,7 +80,7 @@ class ImageFromAPI extends StatefulWidget {
 }
 
 class _ImageFromAPIState extends State<ImageFromAPI> {
-  String imageUrl = 'http://192.168.1.11:8080/plot?query=a'; // Replace with your Flask API URL
+  String imageUrl = flask_url+'/plot?query=a'; // Replace with your Flask API URL
   late Uint8List? imageBytes;
   bool loading = true;
   Future<void> fetchImage() async {

@@ -86,7 +86,7 @@ class _ImageFromAPIState extends State<ImageFromAPI> {
   // Replace with your Flask API URL
 
   Future<void> fetchImage() async {
-    String imageUrl = 'http://192.168.1.11:8080/specificcleanplot?query='+widget.option;
+    String imageUrl = flask_url+'/specificcleanplot?query='+widget.option;
 
     final response = await http.get(Uri.parse(imageUrl));
     if (response.statusCode == 200) {

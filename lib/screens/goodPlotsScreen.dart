@@ -7,6 +7,8 @@ import 'dart:typed_data';
 
 import 'package:photo_view/photo_view.dart';
 
+import 'functions.dart';
+
 
 // void main() => runApp(MyApp());
 
@@ -35,7 +37,7 @@ class GoodImageFromAPI extends StatefulWidget {
 }
 
 class _GoodImageFromAPIState extends State<GoodImageFromAPI> {
-  String imageUrl = 'http://192.168.1.11:8080/goodplot?query=a'; // Replace with your Flask API URL
+  String imageUrl = flask_url+'/goodplot?query=a'; // Replace with your Flask API URL
   late Uint8List? imageBytes;
   bool loading = true;
   Future<void> fetchImage() async {
