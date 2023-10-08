@@ -7,6 +7,7 @@ import 'dart:ui';
 import '../main.dart';
 import 'DisplayCitiesBad.dart';
 import 'Mapscreen.dart';
+
 import 'aqiMeterScreen.dart';
 import 'chatbotScreen.dart';
 import 'forecastedPlotsScreen.dart';
@@ -105,7 +106,7 @@ class _MyCustomUIState extends State<MyCustomUI>
                     ),
                     SizedBox(height: _w / 35),
                     Text(
-                      'Air Quality prediction app.',
+                      'Air Quality Companion app.',
                       style: TextStyle(
                         fontSize: 19,
                         color: Colors.black.withOpacity(.5),
@@ -151,6 +152,7 @@ class _MyCustomUIState extends State<MyCustomUI>
                 context,
                 chatbotScreen(),
               ),
+
               // homePageCardsGroup(
               //     Colors.lightGreen,
               //     Icons.gamepad_outlined,
@@ -320,6 +322,7 @@ class _MyCustomUIState extends State<MyCustomUI>
   Widget homePageCard(Color color, IconData icon, String title,
       BuildContext context, Widget route) {
     double _w = MediaQuery.of(context).size.width;
+
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Opacity(
@@ -348,9 +351,10 @@ class _MyCustomUIState extends State<MyCustomUI>
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
-                    color: Color(0xff040039).withOpacity(.15),
+                    color: Color(0xff040039).withOpacity(.18),
                     blurRadius: 99,
                   ),
+
                 ],
                 borderRadius: BorderRadius.all(
                   Radius.circular(25),
@@ -364,7 +368,7 @@ class _MyCustomUIState extends State<MyCustomUI>
                     height: _w / 5,
                     width: _w / 5,
                     decoration: BoxDecoration(
-                      color: color.withOpacity(.1),
+                      color: color.withOpacity(.2),
                       shape: BoxShape.circle,
                     ),
                     child: Icon(
@@ -456,7 +460,7 @@ class RouteWhereYouGo extends StatelessWidget {
               ),
               SizedBox(height: _w / 35),
               Text(
-                'Air Quality prediction app.',
+                'Air Quality Companion app.',
                 style: TextStyle(
                   fontSize: 19,
                   color: Colors.black.withOpacity(.5),

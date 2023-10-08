@@ -9,7 +9,13 @@ import './const/colors.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await FlutterDisplayMode.setHighRefreshRate();
+  try {
+    await FlutterDisplayMode.setHighRefreshRate();
+  } catch (e) {
+    // Handle any errors that occur while setting the high refresh rate.
+    print("Error setting high refresh rate: $e");
+  }
+  // await FlutterDisplayMode.setHighRefreshRate();
   runApp(MyApp());
 }
 

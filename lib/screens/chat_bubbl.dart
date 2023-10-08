@@ -1,5 +1,5 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-
 class ChatMessage extends StatelessWidget {
   const ChatMessage({
     super.key,
@@ -20,6 +20,7 @@ class ChatMessage extends StatelessWidget {
       ),
       Container(
         padding: EdgeInsets.all(10),
+
         decoration: BoxDecoration(
         color: Colors.grey[300],
         borderRadius: BorderRadius.only(
@@ -34,14 +35,22 @@ class ChatMessage extends StatelessWidget {
             children: <Widget>[
               Text(
                 name ?? "",
-                style: const TextStyle(fontSize: 15,
+                style: const TextStyle(fontSize: 17,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Container(
                 margin: const EdgeInsets.only(top: 8.0),
-                child: Text(text ?? "",
-                    style: TextStyle(fontSize: 11)),
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    // minWidth: 300.0,
+                    maxWidth: MediaQuery.of(context).size.width/1.5,
+                    // minHeight: 30.0,
+                   // maxHeight: 100.0,
+                  ),
+                child: AutoSizeText(text ?? "",
+                    style: TextStyle(fontSize: 15)),
+              )
               ),
             ],
           ),
@@ -70,11 +79,19 @@ class ChatMessage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text(name ?? "", style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold)),
+                  Text(name ?? "", style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold)),
                   Container(
                     margin: const EdgeInsets.only(top: 8.0),
-                    child: Text(text ?? "",
-                    style: TextStyle(fontSize: 11),),
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        // minWidth: 300.0,
+                        maxWidth: MediaQuery.of(context).size.width,
+                        // minHeight: 30.0,
+                       // maxHeight: 100.0,
+                      ),
+                    child: AutoSizeText(text ?? "",
+                    style: TextStyle(fontSize: 15),),
+                  )
                   ),
                 ],
               ),

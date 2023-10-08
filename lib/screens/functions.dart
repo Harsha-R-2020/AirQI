@@ -4,4 +4,4 @@ fetchdata(String url) async {
   http.Response response = await http.get(Uri.parse(url));
   return response.body;
 }
-var flask_url = "http://192.168.186.16:8080";
+var flask_url = "http://192.168.1.11:8080";
