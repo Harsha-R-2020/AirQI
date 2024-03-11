@@ -11,6 +11,7 @@ import 'Mapscreen.dart';
 import 'aqiMeterScreen.dart';
 import 'chatbotScreen.dart';
 import 'forecastedPlotsScreen.dart';
+import 'forecastschoice.dart';
 import 'goodPlotsScreen.dart';
 import 'pythonScreen.dart';
 
@@ -81,11 +82,11 @@ class _MyCustomUIState extends State<MyCustomUI>
         speedOfParticles: 0.5,
         maxParticleSize: 7,
         awayRadius: 0,
-        onTapAnimation: false,
+        onTapAnimation: true,
         isRandSize: true,
         isRandomColor: false,
         connectDots: false,
-        enableHover: false,
+        enableHover: true,
       ),
           ListView(
             physics:
@@ -118,11 +119,11 @@ class _MyCustomUIState extends State<MyCustomUI>
                 ),
               ),
               homePageCard(
-                Color(0xfff37736),
+                Colors.deepOrangeAccent,
                 Icons.analytics_outlined,
                 'PM2.5 Forecasting',
                 context,
-                ForecastedPlot(),
+                ForecastChoiceScreen(),
               ),
               homePageCard(
                 Colors.lightBlue,

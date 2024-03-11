@@ -73,7 +73,7 @@ class _ForecastedPlotFromAPIState extends State<ForecastedPlotFromAPI> {
           CircularParticle(
             width: _w,
             height: h,
-            particleColor: Colors.lightGreen.withOpacity(0.2),
+            particleColor: Colors.deepOrangeAccent.withOpacity(0.2),
             numberOfParticles: 150,
             speedOfParticles: 0.5,
             maxParticleSize: 7,
@@ -150,7 +150,7 @@ class _MyCustomLoadingWidgetState extends State<MyCustomLoadingWidget> {
     return Scaffold(
       body: Center(
         child:  AvatarGlow(
-          glowColor: Colors.lightGreen.withOpacity(0.5),
+          glowColor: Colors.deepOrangeAccent.withOpacity(0.5),
           endRadius: _w/2,
           duration: Duration(milliseconds: 2000),
           repeat: true,
@@ -160,11 +160,11 @@ class _MyCustomLoadingWidgetState extends State<MyCustomLoadingWidget> {
             height: _w/2.5,
             width: _w/2.5,
             decoration: BoxDecoration(
-                color:  Colors.lightGreen, borderRadius: BorderRadius.circular(99)),
+                color:  Colors.deepOrangeAccent, borderRadius: BorderRadius.circular(99)),
             child: Icon(
-              Icons.auto_graph_outlined,
+              Icons.analytics_outlined,
               color: Colors.white,
-              size: 40,
+              size: 70,
             ),
           ),
         ),

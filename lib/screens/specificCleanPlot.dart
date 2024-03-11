@@ -126,11 +126,11 @@ class _ImageFromAPIState extends State<ImageFromAPI> {
           speedOfParticles: 0.5,
           maxParticleSize: 7,
           awayRadius: 0,
-          onTapAnimation: false,
+          onTapAnimation: true,
           isRandSize: true,
           isRandomColor: false,
           connectDots: false,
-          enableHover: false,
+          enableHover: true,
         ),
         ListView(
             physics:

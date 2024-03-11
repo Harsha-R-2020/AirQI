@@ -83,11 +83,11 @@ class _MyCustomWidgetState extends State<MyCustomWidget> {
         speedOfParticles: 1.5,
         maxParticleSize: 7,
         awayRadius: 0,
-        onTapAnimation: false,
+        onTapAnimation: true,
         isRandSize: true,
         isRandomColor: false,
         connectDots: false,
-        enableHover: false,
+        enableHover: true,
       ),
           Center(
           child: Column(
